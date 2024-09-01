@@ -1,0 +1,19 @@
+heartbeat.monitors:
+  - type: http
+    id: go-server
+    name: go-server
+    urls: ["go-server:8080/healthz"]
+    schedule: "@every 5s"
+    check.request:
+      method: GET
+    check.response:
+      status: 200
+  - type: http
+    id: node-server
+    name: node-server
+    urls: ["host.docker.internal:3000/healthz"]
+    schedule: "@every 5s"
+    check.request:
+      method: GET
+    check.response:
+      status: 200
